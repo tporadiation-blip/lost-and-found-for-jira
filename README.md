@@ -54,7 +54,8 @@ _Last updated: 2026-11-15_
 
 ### What the app stores
 - Copies of Jira issues from your site (fields, comments, work logs, link and attachment names), so that deleted issues can be restored.
-- Atlassian account IDs that appear in those issues. Display names, email addresses and avatars are **not** stored; names are read live from Jira when they are shown.
+- Atlassian account IDs that appear in those issues. Profile data (display names, email addresses, avatars) is **not** stored; names are read live from Jira when they are shown.
+- Text that people wrote in issues and comments is copied as written, so it can contain personal data if your users typed it there (for example an @mention shows the name it had when it was written).
 - App settings and the status of the one-time copy of existing issues.
 
 ### Where it is stored
@@ -64,6 +65,9 @@ Only in Atlassian Forge hosted storage for your site. The app makes **no request
 - Copies of deleted issues and comments are erased automatically after the keep time you choose (30 to 365 days), or when an admin erases them from the bin.
 - Copies of existing issues are replaced whenever the issue changes, and removed when the issue is deleted and its keep time ends.
 - When the app is uninstalled, Atlassian removes all app data according to Forge's data retention rules.
+
+### Personal data reporting
+Once a week the app reports the account IDs it holds to Atlassian's personal data reporting service, as Atlassian requires. When Atlassian reports an account as closed, the app removes that account ID from its list; Jira then shows that person as a former user wherever the ID appears.
 
 ### What is not collected
 No analytics, no tracking, no advertising, no cookies set by the app. Nothing is sold or shared.
