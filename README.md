@@ -23,7 +23,7 @@ The **Deleted issues** tab lists everything that was deleted, newest first, with
 - If one person deletes 10 or more issues within 10 minutes, a warning appears at the top. **Show them** lists exactly those issues.
 
 ### 3. Restore
-Press **Open** to read the issue: description, comments, people, labels. Under **What comes back**, untick anything you do not want (comments, work logs, links, status), then press **Restore issue**.
+Press **Open** to read the issue: description, comments, people, labels. Under **What comes back**, untick anything you do not want (comments, work logs, links, status), then press **Restore issue**. The issue is created at once; comments, work logs and links are then added in the background, and the result (including anything that could not be restored) is shown when it is done.
 
 To restore several at once, tick them in the list and press **Restore selected**. Parents are restored first so their sub-tasks can be attached to them.
 
@@ -34,28 +34,34 @@ To restore several at once, tick them in the list and press **Restore selected**
 - The original key and change history. Jira never reuses a deleted key, so the restored issue gets a new key and a note with the old one.
 - The original author on comments and work logs. Jira shows the app as the author, so the real person and time are written in the text.
 - Issues from a deleted project.
+- Issues with a security level the app is not allowed to read, and comments or work logs restricted to a role or group the app is not in. Jira does not show these to the app, so they cannot be copied. For such issues only the deletion itself is recorded.
+
+**Restrictions are kept.** An issue with a security level is restored with the same level, or not at all. A restricted comment or work log is restored with the same restriction, or not at all. Nothing is ever restored open to more people than before. To protect restricted issues, add the app to the security level and give it the *Set issue security* permission.
+
+**Good to know.** Restoring creates a normal new issue, so your Jira may send its usual notifications and run automation rules. Old @mentions are turned into plain text so people are not notified again, and the label `lost-and-found-restored` is added so your rules can skip restored issues.
+
+**Who can use it.** Only Jira administrators. They see every deleted issue the app could copy, including restricted ones.
 
 ### 4. Deleted comments
 The **Deleted comments** tab lists comments that were deleted from issues that still exist. **Put back** adds the comment to the issue again.
 
 ### 5. Settings
 - **Keep deleted issues for:** 30, 90, 180 or 365 days. After that the copy is erased for good.
-- **Projects to leave out:** project keys that should not be copied.
-- **Let project admins restore issues of their own projects:** adds a *Lost and Found* page to each project's settings that shows only that project.
+- **Projects to leave out:** from then on, issues in these projects are not copied and their deletions are not recorded. Items already in the bin stay until their keep time ends.
 - **Display language:** each person's Jira language, English, or Japanese.
 
 ---
 
 ## Privacy policy
 
-_Last updated: 2026-11-15_
+_Last updated: 2026-11-16_
 
 **Lost and Found for Jira** ("the app") runs entirely on Atlassian Forge.
 
 ### What the app stores
 - Copies of Jira issues from your site (fields, comments, work logs, link and attachment names), so that deleted issues can be restored.
-- Atlassian account IDs that appear in those issues. Profile data (display names, email addresses, avatars) is **not** stored; names are read live from Jira when they are shown.
-- Text that people wrote in issues and comments is copied as written, so it can contain personal data if your users typed it there (for example an @mention shows the name it had when it was written).
+- Atlassian account IDs that appear in those issues. Profile data (display names, email addresses, avatars) is **not** stored, also not inside user fields or @mentions; names are read live from Jira when they are shown.
+- Other text that people wrote in issues and comments is copied as written, so it can contain personal data if your users typed it there.
 - App settings and the status of the one-time copy of existing issues.
 
 ### Where it is stored
@@ -79,6 +85,7 @@ No analytics, no tracking, no advertising, no cookies set by the app. Nothing is
 | `write:jira-work` | Create the issue, comments, work logs and links when restoring |
 | `read:jira-user` | Write the original author's name into restored comments and work logs. Names are not stored. |
 | `storage:app` | Keep the copies in Atlassian-hosted storage |
+| `report:personal-data` | Report the stored account IDs to Atlassian's personal data reporting service |
 
 ### Contact
 Questions about privacy: **t.p.o.radiation@gmail.com**
