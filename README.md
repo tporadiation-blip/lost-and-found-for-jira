@@ -1,6 +1,6 @@
 # Lost and Found for Jira
 
-> Also from the same developer: [Quick Diagrams for Jira](quick-diagrams.md) and [Quick Checklist for Jira](quick-checklist.md) (user guides, privacy policies and support).
+> Also from the same developer: [Quick Diagrams for Jira](quick-diagrams.md), [Quick Checklist for Jira](quick-checklist.md) and [Quick Estimate: Planning Poker for Jira](quick-estimate.md) (user guides, privacy policies and support).
 
 A recycle bin for Jira Cloud. When an issue is deleted, a copy is kept so a Jira admin can read it and bring it back.
 
